@@ -420,12 +420,15 @@
       var p = parent.dts;
       var selector = '#' + p.id;
       var button = "";
-      button = $(p.hour_select.element);
-      button.unbind("change");
-      button.bind("change",function() { $.datetimeselect.updateSelectedDate({ hour: this.value },parent); });
-      button = $(p.minute_select.element);
-      button.unbind("change");
-      button.bind("change",function() { $.datetimeselect.updateSelectedDate({ minute: this.value },parent); });
+			if (p.hour_select) {
+        button = $(p.hour_select.element);
+        button.unbind("change");
+        button.bind("change",function() { $.datetimeselect.updateSelectedDate({ hour: this.value },parent); });
+      } if (p.minut_select) {
+        button = $(p.minute_select.element);
+        button.unbind("change");
+        button.bind("change",function() { $.datetimeselect.updateSelectedDate({ minute: this.value },parent); });
+      }
       button = $('#' + p.id + ' > .cds_header > .next');
       button.unbind("click");
       button.bind("click", function() { $.datetimeselect.navMonth(p.date.getMonth() + 1,parent); this.blur(); return false; });
